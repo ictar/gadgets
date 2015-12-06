@@ -5,7 +5,7 @@ Python makes life more beautiful~~
 
 Finished
 =======
-1. 每天将前一天的关注的网站/博客（例如cnblogs/geek.csdn等）的更新做成带目录的.mobi，推送到kindle: kindleGen
+1. 每天将前一天的关注的网站/博客（例如cnblogs/geek.csdn等）的更新做成带目录的.mobi，推送到kindle: [kindleGen](/kindleGen)
 
 Todo
 =======
