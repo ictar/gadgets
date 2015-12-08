@@ -1,0 +1,11 @@
+class OtherNewsRecipe(AutomaticNewsRecipe):
+    title          = u'Other UPDATE'
+    oldest_article = 1
+    max_articles_per_feed = 100
+    auto_cleanup = True
+
+    feeds          = [(u'\u8bd1\u8a00\u7f51', u'http://feed.yeeyan.org/latest'),]
+    
+    __author__            = 'ele.qiong'
+    pubisher  = 'ele.qiong'
+    description           = u'时时涨点见识，知识面~~'

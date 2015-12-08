@@ -1,0 +1,34 @@
+class PythonTutorialRecipe(AutomaticNewsRecipe):
+    title          = u'The Python Tutorial'
+    description           = u'The Python Tutorial in Official Website for Python 3.5.1rc1'
+    auto_cleanup = True
+
+    url_prefix = 'https://docs.python.org/3/tutorial/'
+    no_stylesheets = True
+    #keep_only_tags = [{'class':'body'}]
+    __author__            = 'ele.qiong'
+    pubisher  = 'ele.qiong'
+	
+    timeout = 240.0
+    
+    def get_title(self, link):
+        return link.contents[0].strip()
+        
+    def parse_index(self):
+        soup = self.index_to_soup(self.url_prefix + 'index.html')
+        
+        div = soup.find("div", {"class":"toctree-wrapper compound"})
+        
+        articles = []
+        for link in div.findAll('a'):
+            # 跳过子章节，只需获取一级标题的链接
+            if '#' in link['href']: continue
+            
+            title = self.get_title(link)
+            url = self.url_prefix + link['href']
+            a = {'title':title, 'url':url}
+            
+            articles.append(a)
+        
+        ans = [('The_Python_Tutorial V3',articles)]
+        return ans

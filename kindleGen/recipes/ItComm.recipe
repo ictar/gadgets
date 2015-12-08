@@ -1,0 +1,11 @@
+class ItCommNewsRecipe(AutomaticNewsRecipe):
+    title          = u'IT COMMON UPDATE'
+    oldest_article = 1
+    max_articles_per_feed = 100
+    auto_cleanup = True
+
+    feeds          = [(u'\u535a\u5ba2\u56ed\u65b0\u95fb', u'http://feed.cnblogs.com/news/rss'), (u'HACKDAY', u'https://hackaday.com/blog/feed/'), (u'InfoQ', u'http://www.infoq.com/cn/feed'), (u'\u6781\u5ba2\u516c\u56ed', u'http://www.geekpark.net/rss'), (u'V2EX', u'http://www.v2ex.com/index.xml')]
+    
+    __author__            = 'ele.qiong'
+    pubisher  = 'ele.qiong'
+    description           = u'每日一阅，知IT界当前之事'
