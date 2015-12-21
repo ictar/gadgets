@@ -1,0 +1,34 @@
+class DjangoDocumentRecipe(AutomaticNewsRecipe):
+    title          = u'Django 1.9 Document'
+    description           = u'Everything you need to know about Django 1.9.'
+    auto_cleanup = True
+
+    url_prefix = 'https://docs.djangoproject.com/en/1.9/'
+    no_stylesheets = True
+    
+    __author__            = 'ele.qiong'
+    pubisher  = 'ele.qiong'
+    
+    timeout = 240.0
+    
+    def get_title(self, link):
+        return link.find("em").contents[0].strip()
+        
+    def parse_index(self):
+        soup = self.index_to_soup(self.url_prefix)
+        div = soup.find("div", {"id":"s-django-documentation"})
+        ans = []
+        for sec in div.findAll("div", {"class":"section"}):
+            if sec["id"] == "s-getting-help": continue
+            secname = sec.find("h2").contents[0].strip()
+            articles = []
+            for link in sec.findAll('a'):
+                # 跳过子章节，只需获取一级标题的链接
+                if '#' in link['href']: continue
+                title = self.get_title(link)
+                url = self.url_prefix + link['href']
+                a = {'title':title, 'url':url}
+
+                articles.append(a)        
+            ans.append((secname,articles))
+        return ans

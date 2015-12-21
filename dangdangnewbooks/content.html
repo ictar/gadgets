@@ -1,0 +1,107 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{{ title }} DangDang New Books Update~</title>
+</head>
+<body>
+<div>
+<ul>
+{% for book in books %}
+	<li>
+		<img src="{{ book.coverurl}}">
+		<p class="name"><a href="{{ book.url }}">{{ book.title }}</a></p>
+		<div class="publisher_info">
+			<p class="author">{{ book.author }}&nbsp;&nbsp;/&nbsp;</p>
+			<p class="pubdate">{{ book.pubdate }}&nbsp;/&nbsp;&nbsp;</p>
+			<p class="publisher">{{ book.publisher }}</p>
+		</div>
+		<br />
+		<p class="detail">{{ book.detail }}</p>
+		<p class="price">{{ book.price }}</p>
+		<p class="subtitle">{{ book.subtitle }}</p>
+	</li>
+{% endfor %}
+<ul>
+<div>
+</body>
+<style>
+li
+{
+	zoom: 1;
+    border: solid 1px #fff;
+    border-width: 1px 0;
+    border-top-color: #e6e6e6;
+    padding: 20px 10px 50px;
+    position: relative;
+    line-height: 24px;
+    font-family: Arial;
+    vertical-align: middle;
+	list-style: none;
+}
+li img
+{
+    float: left;
+    margin-right: 10px;
+    width: 90px;
+    height: 90px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+li .name
+{
+	top: 20px;
+    line-height: 20px;
+    height: 20px;
+    width: 780px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+li .name a
+{
+    font-size: 20px;
+    color: #1A66B3;
+	text-decoration: none;
+}
+li .detail
+{
+    display: inline-block;
+    line-height: 20px;
+    color: #878787;
+	padding-left: 160px;
+}
+li .price
+{
+    position: static;
+    float: right;
+    padding-top: 8px;
+    width: auto;
+	font-weight: bold;
+}
+li publisher_info
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border: 0;
+}
+li .author, li .pubdate, li .publisher
+{
+    float: left;
+	font-size: 7px;
+}
+li .subtitle
+{
+    top: 38px;
+    color: #CC3300;
+    height: 20px;
+    overflow: hidden;
+    width: 780px;
+	position: absolute;
+	font-size: 10px;
+	margin-left: 160px;
+}
+</style>
+</style>
+</html>

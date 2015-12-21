@@ -9,6 +9,7 @@ Finished
 
 Todo
 =======
-1. 帮姐姐做的，算是1的扩展：每天将前一天当当书店上每个类别更新的书做成带目录的.mobi，推送到姐姐的Kindle
+1. 帮姐姐做的，算是1的扩展：每天将前一天当当书店上每个类别更新的书做成带目录的.mobi，推送到姐姐的Kindle[dangdangnewbooks](/dangdangnewbooks)
 2. kindle排版工具（idea来自知乎）
 3. 网易公开课视频批量下载（idea来自知乎）
+4. bilibili视频下载器

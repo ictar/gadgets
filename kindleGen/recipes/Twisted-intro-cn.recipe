@@ -1,0 +1,35 @@
+class TwistedIntroRecipe(AutomaticNewsRecipe):
+    title          = u'Twisted与异步编程入门'
+    description           = u'Twisted 网络框架和异步编程入门教程简体中文版'
+    auto_cleanup = True
+
+    url_prefix = 'https://likebeta.gitbooks.io/twisted-intro-cn/content/zh/'
+    no_stylesheets = True
+    #keep_only_tags = [{'class':'body'}]
+    __author__            = 'ele.qiong'
+    pubisher  = 'ele.qiong'
+    
+    timeout = 240.0
+    
+    def get_title(self, link):
+        return link.contents[-1].strip()
+        
+    def parse_index(self):
+        soup = self.index_to_soup(self.url_prefix + 'index.html')
+        
+        articles = []
+        for li in soup.findAll("li", {"class":"chapter "}):
+            link = li.find("a")
+            if '#' in link['href']: continue
+            
+            title = self.get_title(link)
+            if link['href'][0:2] == './':
+                url = self.url_prefix + link['href'][2:]
+            else:
+                url = self.url_prefix + link['href']
+            a = {'title':title, 'url':url}
+
+            articles.append(a)
+        
+        ans = [(u'Twisted与异步编程入门',articles)]
+        return ans

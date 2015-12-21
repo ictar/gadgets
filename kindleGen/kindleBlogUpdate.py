@@ -7,7 +7,7 @@ from settings import *
 
 # generate mobi file
 def genMobi(receipe):
-	mobiName = "{0}_{1}.mobi".format(receipe.split(".")[0],int(time()))
+	mobiName = "{0}_{1}.mobi".format(receipe.split("/")[-1].split(".")[0],int(time()))
 	rc = subprocess.call([
 			'ebook-convert', receipe, mobiName,
 		])
@@ -29,6 +29,12 @@ def push2Kindle(mobiName, relay, port, username, password, encryptMethod, dstuse
 			'-v', '-s', str(subject)
 		])
 	return rc
+
+def removeMobi(mobiName):
+	rc = subprocess.call([
+		'rm',mobiName
+		])
+	return rc
 	
 if __name__ == "__main__":
 	for receipe in receipes:
@@ -47,4 +53,6 @@ if __name__ == "__main__":
 					content=mailcontent, 
 					subject=subject
 				)
-			if rc ==0: print u"push successfully~~"
+			if rc ==0: 
+				print u"push successfully~~"
+				removeMobi(mobiname)

@@ -4,7 +4,12 @@ class OtherNewsRecipe(AutomaticNewsRecipe):
     max_articles_per_feed = 100
     auto_cleanup = True
 
-    feeds          = [(u'\u8bd1\u8a00\u7f51', u'http://feed.yeeyan.org/latest'),]
+    feeds          = [
+        (u'\u8bd1\u8a00\u7f51', u'http://feed.yeeyan.org/latest'),
+        (u'知乎每日精选（强烈推荐）',u'http://www.zhihu.com/rss'),
+        (u'战隼的学习探索（效率生活）', u'http://www.read.org.cn/feed'),
+        (u'GFW与XX', u'http://www.chinagfw.org/feeds/posts/default?alt=rss'),
+    ]
     
     __author__            = 'ele.qiong'
     pubisher  = 'ele.qiong'

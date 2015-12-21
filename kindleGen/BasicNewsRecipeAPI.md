@@ -9,13 +9,13 @@ class calibre.web.feeds.news.**BasicNewsRecipe**(options, log, progress_reporter
 	abort_recipe_processing(msg)
 		引发recipe下载系统停止这个recipe的下载。向用户展示一个简单的回馈信息。
 
-	add_toc_thumbnail(article, src)[source]
-	Call this from populate_article_metadata with the src attribute of an <img> tag from the article that is appropriate for use as the thumbnail representing the article in the Table of Contents. Whether the thumbnail is actually used is device dependent (currently only used by the Kindles). Note that the referenced image must be one that was successfully downloaded, otherwise it will be ignored.
+	add_toc_thumbnail(article, src)
+		Call this from populate_article_metadata with the src attribute of an <img> tag from the article that is appropriate for use as the thumbnail representing the article in the Table of Contents. Whether the thumbnail is actually used is device dependent (currently only used by the Kindles). Note that the referenced image must be one that was successfully downloaded, otherwise it will be ignored.
 
-	classmethod adeify_images(soup)[source]
-	If your recipe when converted to EPUB has problems with images when viewed in Adobe Digital Editions, call this method from within postprocess_html().
+	classmethod adeify_images(soup)
+		If your recipe when converted to EPUB has problems with images when viewed in Adobe Digital Editions, call this method from within postprocess_html().
 
-	canonicalize_internal_url(url, is_link=True)[source]
+	canonicalize_internal_url(url, is_link=True)
 		Return a set of canonical representations of url. The default implementation uses just the server hostname and path of the URL, ignoring any query parameters, fragments, etc. The canonical representations must be unique across all URLs for this news source. If they are not, then internal links may be resolved incorrectly.
 
 		Parameters:	is_link – Is True if the URL is coming from an internal link in an HTML file. False if the URL is the URL used to download an article.
@@ -23,7 +23,7 @@ class calibre.web.feeds.news.**BasicNewsRecipe**(options, log, progress_reporter
 	cleanup()
 		在所有的文章下载结束后调用。用它进行一些例如登出订阅网站等的清理工作。
 
-	clone_browser(br)[source]
+	clone_browser(br)
 		Clone the browser br. Cloned browsers are used for multi-threaded downloads, since mechanize is not thread safe. The default cloning routines should capture most browser customization, but if you do something exotic in your recipe, you should override this method in your recipe and clone manually.
 
 		Cloned browser instances use the same, thread-safe CookieJar by default, unless you have customized cookie handling.
@@ -31,7 +31,7 @@ class calibre.web.feeds.news.**BasicNewsRecipe**(options, log, progress_reporter
 	default_cover(cover_file)
 		为一个没有封面的recipe创建一个通用封面。
 
-	download()[source]
+	download()
 		Download and pre-process all articles from the feeds in this recipe. This method should be called only once on a particular Recipe instance. Calling it more than once will lead to undefined behavior. :return: Path to index.html
 
 	extract_readable_article(html, url)
@@ -57,29 +57,29 @@ class calibre.web.feeds.news.**BasicNewsRecipe**(options, log, progress_reporter
 			return br
 		```
 	get_cover_url()[source]
-	Return a URL to the cover image for this issue or None. By default it returns the value of the member self.cover_url which is normally None. If you want your recipe to download a cover for the e-book override this method in your subclass, or set the member variable self.cover_url before this method is called.
+		Return a URL to the cover image for this issue or None. By default it returns the value of the member self.cover_url which is normally None. If you want your recipe to download a cover for the e-book override this method in your subclass, or set the member variable self.cover_url before this method is called.
 
 	get_feeds()[source]
-	Return a list of RSS feeds to fetch for this profile. Each element of the list must be a 2-element tuple of the form (title, url). If title is None or an empty string, the title from the feed is used. This method is useful if your recipe needs to do some processing to figure out the list of feeds to download. If so, override in your subclass.
+		Return a list of RSS feeds to fetch for this profile. Each element of the list must be a 2-element tuple of the form (title, url). If title is None or an empty string, the title from the feed is used. This method is useful if your recipe needs to do some processing to figure out the list of feeds to download. If so, override in your subclass.
 
 	get_masthead_title()[source]
-	Override in subclass to use something other than the recipe title
+		Override in subclass to use something other than the recipe title
 
 	get_masthead_url()[source]
-	Return a URL to the masthead image for this issue or None. By default it returns the value of the member self.masthead_url which is normally None. If you want your recipe to download a masthead for the e-book override this method in your subclass, or set the member variable self.masthead_url before this method is called. Masthead images are used in Kindle MOBI files.
+		Return a URL to the masthead image for this issue or None. By default it returns the value of the member self.masthead_url which is normally None. If you want your recipe to download a masthead for the e-book override this method in your subclass, or set the member variable self.masthead_url before this method is called. Masthead images are used in Kindle MOBI files.
 
 	get_obfuscated_article(url)[source]
-	If you set articles_are_obfuscated this method is called with every article URL. It should return the path to a file on the filesystem that contains the article HTML. That file is processed by the recursive HTML fetching engine, so it can contain links to pages/images on the web.
+		If you set articles_are_obfuscated this method is called with every article URL. It should return the path to a file on the filesystem that contains the article HTML. That file is processed by the recursive HTML fetching engine, so it can contain links to pages/images on the web.
 
-	This method is typically useful for sites that try to make it difficult to access article content automatically.
+		This method is typically useful for sites that try to make it difficult to access article content automatically.
 
 	classmethod image_url_processor(baseurl, url)[source]
-	Perform some processing on image urls (perhaps removing size restrictions for dynamically generated images, etc.) and return the precessed URL.
+		Perform some processing on image urls (perhaps removing size restrictions for dynamically generated images, etc.) and return the precessed URL.
 
 	index_to_soup(url_or_raw, raw=False, as_tree=False)[source]
-	Convenience method that takes an URL to the index page and returns a BeautifulSoup of it.
+		Convenience method that takes an URL to the index page and returns a BeautifulSoup of it.
 
-	url_or_raw: Either a URL or the downloaded index page as a string
+		url_or_raw: Either a URL or the downloaded index page as a string
 
 	is_link_wanted(url, tag)[source]
 		Return True if the link should be followed or False otherwise. By default, raises NotImplementedError which causes the downloader to ignore it.
@@ -89,20 +89,20 @@ class calibre.web.feeds.news.**BasicNewsRecipe**(options, log, progress_reporter
 		tag – The Tag from which the URL was derived
 	
 	javascript_login(browser, username, password)[source]
-	This method is used to login to a website that uses javascript for its login form. After the login is complete, the cookies returned from the website are copied to a normal (non-javascript) browser and the download proceeds using those cookies.
+		This method is used to login to a website that uses javascript for its login form. After the login is complete, the cookies returned from the website are copied to a normal (non-javascript) browser and the download proceeds using those cookies.
 
-	An example implementation:
+		An example implementation:
 
-	def javascript_login(self, browser, username, password):
-		browser.visit('http://some-page-that-has-a-login')
-		form = browser.select_form(nr=0) # Select the first form on the page
-		form['username'] = username
-		form['password'] = password
-		browser.submit(timeout=120) # Submit the form and wait at most two minutes for loading to complete
-	Note that you can also select forms with CSS2 selectors, like this:
+		def javascript_login(self, browser, username, password):
+			browser.visit('http://some-page-that-has-a-login')
+			form = browser.select_form(nr=0) # Select the first form on the page
+			form['username'] = username
+			form['password'] = password
+			browser.submit(timeout=120) # Submit the form and wait at most two minutes for loading to complete
+		Note that you can also select forms with CSS2 selectors, like this:
 
-	browser.select_form('form#login_form')
-	browser.select_from('form[name="someform"]')
+		browser.select_form('form#login_form')
+		browser.select_from('form[name="someform"]')
 	
 	parse_feeds()
 		根据BasicNewsRecipe.get_feeds()返回的feed列表创建文章列表。返回一个Feed对象列表。
@@ -157,12 +157,12 @@ class calibre.web.feeds.news.**BasicNewsRecipe**(options, log, progress_reporter
 
 		soup: 一个BeautifulSoup实例，它包含下载的HTML。
 
-	preprocess_raw_html(raw_html, url)[source]
-	This method is called with the source of each downloaded HTML file, before it is parsed into an object tree. raw_html is a unicode string representing the raw HTML downloaded from the web. url is the URL from which the HTML was downloaded.
+	preprocess_raw_html(raw_html, url)
+		This method is called with the source of each downloaded HTML file, before it is parsed into an object tree. raw_html is a unicode string representing the raw HTML downloaded from the web. url is the URL from which the HTML was downloaded.
 
-	Note that this method acts before preprocess_regexps.
+		Note that this method acts before preprocess_regexps.
 
-	This method must return the processed raw_html as a unicode object.
+		This method must return the processed raw_html as a unicode object.
 
 	classmethod print_version(url)
 		接收一个指向文章内容的网页的url，返回一个指向文章打印版本的url。默认不做任何操作。例如：
@@ -203,13 +203,13 @@ class calibre.web.feeds.news.**BasicNewsRecipe**(options, log, progress_reporter
 		`auto_cleanup_keep = '//div[@id="article-image"]|//span[@class="important"]'`将保留所有拥有属性id="article-image"的div元素及拥有属性class="important"的span元素。
 						  
 	center_navbar = True
-	If True the navigation bar is center aligned, otherwise it is left aligned
+		If True the navigation bar is center aligned, otherwise it is left aligned
 
 	compress_news_images = False
-	Set this to False to ignore all scaling and compression parameters and pass images through unmodified. If True and the other compression parameters are left at their default values, jpeg images will be scaled to fit in the screen dimensions set by the output profile and compressed to size at most (w * h)/16 where w x h are the scaled image dimensions.
+		Set this to False to ignore all scaling and compression parameters and pass images through unmodified. If True and the other compression parameters are left at their default values, jpeg images will be scaled to fit in the screen dimensions set by the output profile and compressed to size at most (w * h)/16 where w x h are the scaled image dimensions.
 
 	compress_news_images_auto_size = 16
-	The factor used when auto compressing jpeg images. If set to None, auto compression is disabled. Otherwise, the images will be reduced in size to (w * h)/compress_news_images_auto_size bytes if possible by reducing the quality level, where w x h are the image dimensions in pixels. The minimum jpeg quality will be 5/100 so it is possible this constraint will not be met. This parameter can be overridden by the parameter compress_news_images_max_size which provides a fixed maximum size for images. Note that if you enable scale_news_images_to_device then the image will first be scaled and then its quality lowered until its size is less than (w * h)/factor where w and h are now the scaled image dimensions. In other words, this compression happens after scaling.
+		The factor used when auto compressing jpeg images. If set to None, auto compression is disabled. Otherwise, the images will be reduced in size to (w * h)/compress_news_images_auto_size bytes if possible by reducing the quality level, where w x h are the image dimensions in pixels. The minimum jpeg quality will be 5/100 so it is possible this constraint will not be met. This parameter can be overridden by the parameter compress_news_images_max_size which provides a fixed maximum size for images. Note that if you enable scale_news_images_to_device then the image will first be scaled and then its quality lowered until its size is less than (w * h)/factor where w and h are now the scaled image dimensions. In other words, this compression happens after scaling.
 
 	compress_news_images_max_size = None
 	Set jpeg quality so images do not exceed the size given (in KBytes). If set, this parameter overrides auto compression via compress_news_images_auto_size. The minimum jpeg quality will be 5/100 so it is possible this constraint will not be met.
@@ -371,7 +371,7 @@ class calibre.web.feeds.news.**BasicNewsRecipe**(options, log, progress_reporter
 		简述中的最大字数。
 
 	template_css = u'\n .article_date {\n color: gray; font-family: monospace;\n }\n\n .article_description {\n text-indent: 0pt;\n }\n\n a.article {\n font-weight: bold; text-align:left;\n }\n\n a.feed {\n font-weight: bold;\n }\n\n .calibre_navbar {\n font-family:monospace;\n }\n '
-		The CSS that is used to style the templates, i.e., the navigation bars and the Tables of Contents. Rather than overriding this variable, you should use extra_css in your recipe to customize look and feel.
+		用来为template提供样式的CSS，例如，导航条和内容表。相较于覆盖这个变量，你应该在你的recipe中使用extra_css来定制样式。
 
 	timefmt = ' [%a, %d %b %Y]'
 		首页显示的日期格式。默认是: Day_Name, Day_Number Month_Name Year
