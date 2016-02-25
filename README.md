@@ -10,6 +10,8 @@ Finished
 
 Todo
 =======
-1. kindle排版工具（idea来自知乎）
-2. 网易公开课视频批量下载（idea来自知乎）
-3. bilibili视频下载器
+- kindle排版工具（idea来自知乎）
+- 网易公开课视频批量下载（idea来自知乎）
+- bilibili视频下载器
+- 电影天堂视频下载器（迅雷有下载API吗？）
+- 批量修改文件夹内的文件名（考虑用shell或bat试试）
