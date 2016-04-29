@@ -15,3 +15,4 @@ Todo
 - bilibili视频下载器
 - 电影天堂视频下载器（迅雷有下载API吗？）
 - 批量修改文件夹内的文件名（考虑用shell或bat试试）
+- python系博文翻译辅助工具（raw html ——> 正文 ——> markdown文件）
