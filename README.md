@@ -6,9 +6,11 @@ Python makes life more beautiful~~
 
 Finished
 =======
-1. 每天将前一天的关注的网站/博客（例如cnblogs/geek.csdn等）的更新做成带目录的.mobi，推送到kindle: [kindleGen](/kindleGen)
-2. 帮姐姐做的，算是1的扩展：每天将前一天当当书店上指定类别更新的书爬下来，发送到姐姐的邮箱：[dangdangnewbooks](/dangdangnewbooks)
-3. python weekly内容转markdown工具
+1. 每天将前一天的关注的网站/博客（例如cnblogs/geek.csdn等）的更新做成带目录的.mobi，推送到kindle: [kindleGen](./kindleGen)
+2. 帮姐姐做的，算是1的扩展：每天将前一天当当书店上指定类别更新的书爬下来，发送到姐姐的邮箱：[dangdangnewbooks](./dangdangnewbooks)
+3. python weekly内容转markdown工具: [pw2md](./pw2md.py)
+4. go weekly内容转markdown工具: [go2md](./go2md.py)
+
 
 Todo
 =======
@@ -17,4 +19,3 @@ Todo
 - bilibili视频下载器
 - 电影天堂视频下载器（迅雷有下载API吗？）
 - 批量修改文件夹内的文件名（考虑用shell或bat试试）
-- python系博文翻译辅助工具（raw html ——> 正文 ——> markdown文件）
