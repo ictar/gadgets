@@ -5,7 +5,8 @@ sys.setdefaultencoding('utf-8')
 import re
 import requests
 from lxml import etree
-from html2text import html2text
+import html2text
+
 
 # 获取第一个issue
 def get_first_issue(url):
@@ -17,12 +18,14 @@ def get_first_issue(url):
     return fst_issue
 
 
-# 获取issue的内容，并专程markdown
+# 获取issue的内容，并转成markdown
 def get_issue_md(url):
     resp = requests.get(url)
     page = etree.HTML(resp.text)
     content = page.xpath("//td[@class='defaultText']")[0]#'//table[@class="bodyTable"]')[0]
-    return html2text(etree.tostring(content))
+    h = html2text.HTML2Text()
+    h.body_width=0 # 不自动换行
+    return h.handle(etree.tostring(content))
 
 subtitle_mapping = {
     '**From Our Sponsor**': '# 来自赞助商',
@@ -43,6 +46,7 @@ def clean_issue(content):
     return content
 
 tpl_str = """原文：[{title}]({url})
+
 ---
 
 {content}

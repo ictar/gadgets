@@ -24,7 +24,7 @@ item_tpl = """
 _{source}_
 """
 tag_mapping = {
-	"story": "",
+	#"story": "",
 	"tutorial": "教程",
 	"code": "代码",
 	"video": "视频",
@@ -40,6 +40,7 @@ def do_with_item(item):
         tag = link.xpath(".//span")
         if tag:
             tag = "**[{}]**".format(tag[0].xpath("text()")[0].strip())
+            tag = tag_mapping.get(tag, tag)
         else:
             tag = ""
         try:
@@ -91,6 +92,7 @@ def clean_issue(content):
     return content
 
 tpl_str = """原文：[{title}]({url})
+
 ---
 
 {content}
