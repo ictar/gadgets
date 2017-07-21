@@ -60,8 +60,8 @@ def run():
 	print "开始清理issue内容"
 	content = clean_issue(content)
 
-	print "清理完毕，准备写入文件"
-	title = fst['title'].replace('- ', '')
+	print "清理完毕，准备将", fst['title'], "写入文件"
+	title = fst['title'].replace('- ', '').replace(' ', '_')
 	with open(title+'.md', "wb") as f:
 	    f.write(tpl_str.format(title=fst['title'], url=fst['href'], content=content))
 	print "恭喜，完成啦。文件保存至%s.md" % title
