@@ -11,7 +11,10 @@
   },
   "permissions": [
     "activeTab",
+    "tabs",
     "http://www.szlib.org.cn/*"
   ],
-  "homepage_url": "http://www.szlib.org.cn"
+  "background": {
+    "scripts": ["search.js"]
+  }
 }
