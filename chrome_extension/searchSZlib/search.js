@@ -31,7 +31,7 @@ function getCurrentTabTitle(callback) {
 
 /**
  * @param {string} searchTerm - Search term for szlib search.
- * @param {function(string)} callback - Called when the booklist has
+ * @param {function(domain, string)} callback - Called when the booklist has
  *   been found. The callback gets booklist.
  * @param {function(string)} errorCallback - Called when the booklist is not found.
  *   The callback gets a string that describes the failure reason.
@@ -97,4 +97,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			renderStatus("找不到这本书T_T " + errMsg);
 		});
 	});
+});
+
+$(document).ready(function(){
+   $('body').on('click', 'a', function(){
+     chrome.tabs.create({url: $(this).attr('href')});
+     return false;
+   });
 });
