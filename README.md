@@ -11,6 +11,7 @@ Finished
 3. python weekly内容转markdown工具: [pw2md](./pw2md.py)
 4. go weekly内容转markdown工具: [go2md](./go2md.py)
 5. 在深圳图书馆网页上搜索当前页面的图书：[searchSZlib](./searchSZlib)
+6. 把自己收藏的图书爬取下来，可以根据图书馆进行分类(./szlib_bookscra.py)
 
 
 Todo

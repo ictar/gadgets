@@ -54,7 +54,7 @@ tpl_str = """原文：[{title}]({url})
 def run():
 	issue_list_url = "http://us2.campaign-archive2.com/home/?u=e2e180baf855ac797ef407fc7&id=9e26887fc5"
 	print "开始获取最新的issue……"
-	fst = get_first_issue(issue_list_url)
+	fst = get_first_issue(issue_list_url) #{'href': 'http://eepurl.com/c78_yL', 'title': 'Python Weekly - Issue 317'}
 	print "获取完毕。开始截取最新的issue内容并将其转换成markdown格式"
 	content = get_issue_md(fst['href'])
 	print "开始清理issue内容"
@@ -62,7 +62,7 @@ def run():
 
 	print "清理完毕，准备将", fst['title'], "写入文件"
 	title = fst['title'].replace('- ', '').replace(' ', '_')
-	with open(title+'.md', "wb") as f:
+	with open(title.strip()+'.md', "wb") as f:
 	    f.write(tpl_str.format(title=fst['title'], url=fst['href'], content=content))
 	print "恭喜，完成啦。文件保存至%s.md" % title
 
