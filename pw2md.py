@@ -22,7 +22,7 @@ def get_first_issue(url):
 def get_issue_md(url):
     resp = requests.get(url)
     page = etree.HTML(resp.text)
-    content = page.xpath("//td[@class='defaultText']")[0]#'//table[@class="bodyTable"]')[0]
+    content = page.xpath("//table[@id='templateBody']")[0]#'//table[@class="bodyTable"]')[0]
     h = html2text.HTML2Text()
     h.body_width=0 # 不自动换行
     return h.handle(etree.tostring(content))
@@ -52,19 +52,20 @@ tpl_str = """原文：[{title}]({url})
 {content}
 """
 def run():
-	issue_list_url = "http://us2.campaign-archive2.com/home/?u=e2e180baf855ac797ef407fc7&id=9e26887fc5"
-	print "开始获取最新的issue……"
-	fst = get_first_issue(issue_list_url) #{'href': 'http://eepurl.com/c78_yL', 'title': 'Python Weekly - Issue 317'}
-	print "获取完毕。开始截取最新的issue内容并将其转换成markdown格式"
-	content = get_issue_md(fst['href'])
-	print "开始清理issue内容"
-	content = clean_issue(content)
+    issue_list_url = "https://us2.campaign-archive.com/home/?u=e2e180baf855ac797ef407fc7&id=9e26887fc5"
+    print "开始获取最新的issue……"
+    fst = get_first_issue(issue_list_url)
+    #fst = {'href': 'http://eepurl.com/dqpDyL', 'title': 'Python Weekly - Issue 341'}
+    print "获取完毕。开始截取最新的issue内容并将其转换成markdown格式"
+    content = get_issue_md(fst['href'])
+    print "开始清理issue内容"
+    content = clean_issue(content)
 
-	print "清理完毕，准备将", fst['title'], "写入文件"
-	title = fst['title'].replace('- ', '').replace(' ', '_')
-	with open(title.strip()+'.md', "wb") as f:
-	    f.write(tpl_str.format(title=fst['title'], url=fst['href'], content=content))
-	print "恭喜，完成啦。文件保存至%s.md" % title
+    print "清理完毕，准备将", fst['title'], "写入文件"
+    title = fst['title'].replace('- ', '').replace(' ', '_')
+    with open(title.strip()+'.md', "wb") as f:
+        f.write(tpl_str.format(title=fst['title'], url=fst['href'], content=content))
+    print "恭喜，完成啦。文件保存至%s.md" % title
 
 if __name__ == '__main__':
-	run()
+    run()
