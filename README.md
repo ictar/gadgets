@@ -13,6 +13,11 @@ Finished
 5. 在深圳图书馆网页上搜索当前页面的图书：[searchSZlib](./searchSZlib)
 6. 把自己收藏的图书爬取下来，可以根据图书馆进行分类(./szlib_bookscra.py)
 7. 文字图片识别：[ImgOCR.py](./ImgOCR.py)
+8. 词云生成工具：[gen_wordcloud.py](./gen_wordcloud.py)
+9. HTML 转 markdown 工具：[html2md.py](./html2md.py)
+10. 根据 isbn 查询类别：[isbn2catagory.py](./isbn2catagory.py)
+11. 图片相关工具：[图片](./图片)
+12. 目录和文件相关：[目录和文件](./目录和文件)
 
 
 
